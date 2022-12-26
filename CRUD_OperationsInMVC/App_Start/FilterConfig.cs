@@ -1,7 +1,8 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace CRUD_OperationsInMVC
+namespace OperationsInMVC
+
 {
     public class FilterConfig
     {

@@ -1,10 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ASP.NET",
     "\\BusinessLayer",
-    "\\CRUD_OperationsInMVC"
+    "\\CRUD_OperationsInMVC",
+    "\\CRUD_OperationsInMVC\\BusinessObject",
+    "\\CRUD_OperationsInMVC\\Controllers",
+    "\\CRUD_OperationsInMVC\\Models",
+    "\\CRUD_OperationsInMVC\\Views",
+    "\\CRUD_OperationsInMVC\\Views\\BusinessObject"
   ],
-  "SelectedNode": "\\CRUD_OperationsInMVC\\EmployeeDataModel.Context.cs",
+  "SelectedNode": "\\OnlineMarket.sln",
   "PreviewInSolutionExplorer": false
 }

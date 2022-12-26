@@ -5,7 +5,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace CRUD_OperationsInMVC.Models
+namespace OperationsInMVC
+    .Models
 {
     class MemberBusinessLayer  
     {
@@ -157,6 +158,23 @@ namespace CRUD_OperationsInMVC.Models
                 paramDateOfBirth.ParameterName = "@DateOfBirth";
                 paramDateOfBirth.Value = member.DateOfBirth;
                 cmd.Parameters.Add(paramDateOfBirth);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void DeleteMember(int id)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spDeleteMember", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter paramId = new SqlParameter();
+                paramId.ParameterName = "@Id";
+                paramId.Value = id;
+                cmd.Parameters.Add(paramId);
 
                 con.Open();
                 cmd.ExecuteNonQuery();

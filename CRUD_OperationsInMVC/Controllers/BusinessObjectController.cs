@@ -4,10 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-using CRUD_OperationsInMVC;
-using CRUD_OperationsInMVC.Models;
+using OperationsInMVC;
+using OperationsInMVC.Models;
 
-namespace CRUD_OperationsInMVC.Controllers
+namespace OperationsInMVC.Controllers
 {
     public class BusinessObjectController : Controller
     {
@@ -102,7 +102,60 @@ namespace CRUD_OperationsInMVC.Controllers
             }
             return View(member);
         }
+        [HttpGet]
+        [ActionName("EditExceptNameBind")]
+        public ActionResult Edit_Get(int id)
+        {
+            MemberBusinessLayer memberBusinessLayer = new MemberBusinessLayer();
+            Member member = memberBusinessLayer.GetAllMembers().FirstOrDefault(mem => mem.ID == id);
+            return View(member);
+        }
+        //[HttpPost]
+        //[ActionName("EditExceptNameBind")]
+        //public ActionResult Edit_Post(int id)
+        //{
+        //    MemberBusinessLayer memberBusinessLayer = new MemberBusinessLayer();
+        //    Member member = memberBusinessLayer.GetAllMembers().Single(x => x.ID == id);
+        //    UpdateModel<IMember>(member);
+        //    if (ModelState.IsValid)
+        //    {
+        //        memberBusinessLayer.UpdateMember(member);
+        //        return RedirectToAction("/Index");
+        //    }
+        //    return View(member);
+        //}
 
+        [HttpPost]
+        [ActionName("EditExceptNameBind")]
+        //or Change public ActionResult Edit_Post([Bind(Exclude = "Name")] Employee employee)
+        public ActionResult Edit_Post([Bind(Include = "Id, Gender, City, Salary, DateOfBirth")] Member member)
+        {
+            MemberBusinessLayer memberBusinessLayer = new MemberBusinessLayer();
+            member.Name = memberBusinessLayer.GetAllMembers().FirstOrDefault(x => x.ID == member.ID).Name;
+            if (ModelState.IsValid)
+            {
+                memberBusinessLayer.UpdateMember(member);
+                return RedirectToAction("/Index");
+            }
+            return View(member);
+        }
+
+        [HttpGet]
+        [ActionName("Delete")]
+        public ActionResult Delete_Get(int id)
+        {
+            MemberBusinessLayer memberBusinessLayer = new MemberBusinessLayer();
+            Member member = memberBusinessLayer.GetAllMembers().FirstOrDefault(mem => mem.ID == id);
+            return View(member);
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        public ActionResult Delete_Post(int id)
+        {
+            MemberBusinessLayer memberBusinessLayer = new MemberBusinessLayer();
+            memberBusinessLayer.DeleteMember(id);
+            return RedirectToAction("/Index");
+        }
         //if (ModelState.IsValid)
         //{
         //    foreach (string key in formCollection.AllKeys)

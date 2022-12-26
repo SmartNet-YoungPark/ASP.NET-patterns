@@ -1,11 +1,13 @@
-﻿using CRUD_OperationsInMVC.Models;
+﻿using OperationsInMVC.Models;
+using OperationsInMVC.DAL;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CRUD_OperationsInMVC.Controllers
+namespace OperationsInMVC.Controllers
 { 
    
     public class DepartmentsController : Controller
